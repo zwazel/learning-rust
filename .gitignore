@@ -177,3 +177,8 @@ Cargo.lock
 *.pdb
 
 # End of https://www.toptal.com/developers/gitignore/api/rust,intellij+all,eclipse
+
+
+# Added by cargo
+
+/target
