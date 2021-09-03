@@ -7,8 +7,33 @@ use rand::Rng;
 
 fn main() {
     println!("Hello, world!");
+    loop {
+        println!("- Type 0 to exit the game");
+        println!("- Type 1 to play a number guessing game!");
 
-    guess_the_number();
+        let mut command = String::new();
+
+        io::stdin()
+            .read_line(&mut command)
+            .expect("Failed to read line");
+
+        let command: u32 = match command.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please type a number!");
+                continue;
+            }
+        };
+
+        match command {
+            0 => { break; }
+            1 => { guess_the_number(); }
+            _ => {
+                println!("Unknown, pls type one of the specified numbers!");
+                continue;
+            }
+        }
+    }
 }
 
 // https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html
@@ -22,7 +47,7 @@ fn guess_the_number() {
     // println!("The secret number is: {}", secret_number);
 
     loop {
-        println!("Please input your guess.");
+        println!("Please input your guess. (1-100)");
 
         // - "let mut" -> declare a mutable variable, normally variables are immutable
         // - "::new()" -> is like a static function of the type String, so with "::" we say it is an associated function of the String type.
